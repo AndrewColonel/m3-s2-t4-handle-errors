@@ -1,6 +1,8 @@
 package ru.yandex.practicum.controllers;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Map;
 
@@ -40,6 +42,12 @@ public class CatsInteractionController {
         return Map.of("happiness", happiness);
     }
 
+    @GetMapping("/feed")
+    public Map<String, Integer> feed() {
+        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Метод /feed ещё не реализован.");
+    }
+
+
 //    @ExceptionHandler
 //// отлавливаем исключение IllegalArgumentException
 //    public Map<String, String> handleNegativeCount(final IllegalArgumentException e) {
@@ -70,7 +78,7 @@ public class CatsInteractionController {
 //    }
 
 
-
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler
     public Map<String, String> handle(final IncorrectCountException e) {
         return Map.of(
@@ -79,12 +87,12 @@ public class CatsInteractionController {
         );
     }
 
-    @ExceptionHandler
-// отлавливаем исключение RuntimeException
-    public Map<String, String> handleError(final RuntimeException e) {
-        // возвращаем сообщение об ошибке
-        return Map.of("error", "Произошла ошибка!");
-    }
+//    @ExceptionHandler
+//// отлавливаем исключение RuntimeException
+//    public Map<String, String> handleError(final RuntimeException e) {
+//        // возвращаем сообщение об ошибке
+//        return Map.of("error", "Произошла ошибка!");
+//    }
 
 
 
